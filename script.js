@@ -26,8 +26,9 @@ onload = () => {
         }
     }
 
-    function drawHand(time, color, size, len) {
-        const ang = (360/60) * time * (Math.PI/180)
+    function drawHand(hand, time, color, size, len) {
+        let ang = (360/60) * time * (Math.PI/180)
+        if (hand == 'h') {ang = ang*5 + (360/60)*(new Date().getMinutes() - 30)*(Math.PI/180)/6}
         const sin = Math.sin(ang)
         const cos = Math.cos(ang)
         ctx.setTransform(cos, sin, -sin, cos, canvas.width/2, canvas.height/2)
@@ -37,7 +38,7 @@ onload = () => {
         ctx.beginPath()
         ctx.moveTo(0, 0)
         ctx.lineTo(0, len - 50)
-        ctx.stroke() 
+        ctx.stroke()
     }
 
     const Watch = t => {
@@ -45,13 +46,14 @@ onload = () => {
 
         drawWatchFace()
 
-        drawHand(new Date().getHours() - 5, 'black', 15, canvas.width/2 - 45)
+        drawHand('h', new Date().getHours() - 30, 'black', 15, canvas.width/2 - 45)
 
-        drawHand(new Date().getMinutes() - 30, 'black', 12, canvas.width/2 - 20)
+        drawHand('m', new Date().getMinutes() - 30, 'black', 12, canvas.width/2 - 20)
 
-        drawHand(new Date().getSeconds() - 30, 'red', 10, canvas.width/2 - 10)
+        drawHand('s', new Date().getSeconds() - 30, 'red', 10, canvas.width/2 - 10)
 
         requestAnimationFrame(Watch)
     }
     requestAnimationFrame(Watch)
 }
+
