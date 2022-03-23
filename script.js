@@ -29,7 +29,7 @@ onload = () => {
 
     function drawHand(hand, time, color, size, len) {
         let ang = (360/60) * time * (Math.PI/180)
-        if (hand == 'h') {ang = ang*5 + Math.abs((360/60)*(new Date().getMinutes() - 30)*(Math.PI/180)/12)}
+        if (hand == 'h') {ang = ang*5 + Math.abs((360/60)*(new Date().getMinutes()-30)*(Math.PI/180)/12)}
         const sin = Math.sin(ang)
         const cos = Math.cos(ang)
         ctx.setTransform(cos, sin, -sin, cos, canvas.width/2, canvas.height/2)
