@@ -3,8 +3,8 @@ onload = () => {
     const ctx = canvas.getContext('2d')
 
     function drawWatchFace() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.setTransform()
+        ctx.clearRect(0, 0, canvas.width, canvas.height)
         ctx.fillStyle = 'white'
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 10
