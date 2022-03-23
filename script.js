@@ -2,6 +2,7 @@ onload = () => {
     const canvas = document.getElementById('canvas')
     const ctx = canvas.getContext('2d')
 
+    // РИСУЕМ ЦИФЕРБЛАТ
     function drawWatchFace() {
         ctx.setTransform()
         ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -26,10 +27,12 @@ onload = () => {
         }
     }
 
+    // РИСУЕМ СТРЕЛКИ
     function drawHand(hand, time, color, size, len) {
         let ang = time * Math.PI / 30
         if (hand == 'h') {ang = ang*5 + new Date().getMinutes() * Math.PI / 360}
         if (hand == 'm') {ang += new Date().getSeconds() * Math.PI / 1800}
+        if (hand == 's') {ang += new Date().getMilliseconds() * Math.PI / 30000}
         const sin = Math.sin(ang)
         const cos = Math.cos(ang)
         ctx.setTransform(cos, sin, -sin, cos, canvas.width/2, canvas.height/2)
@@ -38,7 +41,7 @@ onload = () => {
         ctx.lineWidth = size
         ctx.beginPath()
         ctx.moveTo(0, 0)
-        ctx.lineTo(0, 50 - len)
+        ctx.lineTo(0, len)
         ctx.stroke()
     }
 
@@ -47,14 +50,11 @@ onload = () => {
 
         drawWatchFace()
 
-        drawHand('h', new Date().getHours(), 'black', 15, canvas.width/2 - 45)
-
-        drawHand('m', new Date().getMinutes(), 'black', 12, canvas.width/2 - 20)
-
-        drawHand('s', new Date().getSeconds(), 'red', 10, canvas.width/2 - 10)
+        drawHand('h', new Date().getHours(), 'black', 15, 95 - canvas.width/2)
+        drawHand('m', new Date().getMinutes(), 'black', 12, 70 - canvas.width/2)
+        drawHand('s', new Date().getSeconds(), 'red', 10, 60 - canvas.width/2)
 
         requestAnimationFrame(Watch)
     }
     requestAnimationFrame(Watch)
 }
-
