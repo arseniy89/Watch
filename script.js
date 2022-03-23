@@ -7,6 +7,7 @@ onload = () => {
         ctx.setTransform()
         ctx.fillStyle = 'white'
         ctx.strokeStyle = 'black'
+        ctx.lineCap = 'round'
         ctx.lineWidth = 10
         ctx.beginPath()
         ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2 - 10, 0, Math.PI*2)
@@ -28,7 +29,7 @@ onload = () => {
 
     function drawHand(hand, time, color, size, len) {
         let ang = (360/60) * time * (Math.PI/180)
-        if (hand == 'h') {ang = ang*5 + (360/60)*(new Date().getMinutes() - 30)*(Math.PI/180)/6}
+        if (hand == 'h') {ang = ang*5 + Math.abs((360/60)*(new Date().getMinutes() - 30)*(Math.PI/180)/12)}
         const sin = Math.sin(ang)
         const cos = Math.cos(ang)
         ctx.setTransform(cos, sin, -sin, cos, canvas.width/2, canvas.height/2)
