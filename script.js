@@ -46,7 +46,7 @@ onload = () => {
     }
 
     const Watch = t => {
-        if (t > 2160000) {t -= 2160000}
+        if (t > 2160000) {t %= 2160000}
 
         drawWatchFace()
 
