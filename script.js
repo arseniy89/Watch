@@ -46,10 +46,7 @@ onload = () => {
     }
 
     const Watch = t => {
-        if (t > 2160000) {t %= 2160000}
-
         drawWatchFace()
-
         drawHand('h', new Date().getHours(), 'black', 15, 95 - canvas.width/2)
         drawHand('m', new Date().getMinutes(), 'black', 12, 70 - canvas.width/2)
         drawHand('s', new Date().getSeconds(), 'red', 10, 60 - canvas.width/2)
